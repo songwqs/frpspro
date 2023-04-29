@@ -2,10 +2,10 @@
 
 #====================================================
 #	System Request: Centos 7+ Debian 8+
-#	Author: dylanbai8
+#	Author: songwqs
 #	* Frps 一键安装脚本，Frpc Windows 便捷脚本！Frp 远程桌面！
-#	* 开源地址：https://github.com/dylanbai8/frpspro
-#	Blog: https://oo0.bid
+#	* 开源地址：https://github.com/songwqs/frpspro
+#	Blog: https://songw.top/
 #====================================================
 
 
@@ -17,14 +17,20 @@ get_version(){
 
 	touch ./version.txt
 	cat <<EOF > ./version.txt
-${new_ver}
-EOF
-
+	${new_ver}
+	EOF
+	
 	sed -i 's/v//g' ./version.txt
 	get_releases=$(cat ./version.txt)
 
-	releases_url=https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_linux_amd64.tar.gz
-	windows_url=https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_windows_amd64.zip
+	if [ ! -n "$get_releases" ]; then
+	new_ver="v0.48.0"
+	get_releases="0.48.0"
+	fi
+	
+	ghproxy="https://ghproxy.com/"
+	releases_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_linux_amd64.tar.gz
+	windows_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_windows_amd64.zip
 	rm -rf ./version.txt
 }
 
