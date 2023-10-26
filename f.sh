@@ -40,15 +40,47 @@ rm -rf ./version.txt
 
 # 安装frps
 install_frps(){
-	wget -N --no-check-certificate ${releases_url}
-
-	tar -zxvf frp*.tar.gz
-
-	rm -rf /usr/local/frps
-	mkdir /usr/local/frps
-
-	mv ./frp*/frps /usr/local/frps/frps
-	mv ./frp*/frps_full.ini /usr/local/frps/frps.ini
+wget -N --no-check-certificate ${releases_url}
+tar -zxvf frp*.tar.gz
+rm -rf /usr/local/frps
+mkdir /usr/local/frps
+mv ./frp*/frps /usr/local/frps/frps
+touch /usr/local/frps/frps.ini	
+cat <<EOF > /usr/local/frps/frps.ini
+# [common] 完整的配置参数
+[common]
+#IPv6的文字地址或主机名必须包含在内
+#方括号中，如“[：：1]：80”、“[ipv6-host]：http”或“[ipv6host%zone]：80”
+bind_addr=0.0.0.0
+bind_port=7000
+#用于kcp协议的udp端口，它可以与“bind_port”相同
+#如果未设置，则在frp中禁用kcp
+kcp_bind_port=7000
+#如果要通过仪表板配置或重新加载frp，则必须设置dashboard_port
+dashboard_port=7500
+#仪表板资产目录（仅适用于调试模式）
+dashboard_user=admin
+dashboard_pwd=admin123
+# assets_dir = ./static
+# 由于服务器Nginx之类的占用了默认不占用80和443 
+vhost_http_port=81
+vhost_https_port=8443
+#控制台或真实日志文件路径类似/frps.log
+log_file = ./frps.log
+#调试，信息，警告，错误（debug, info, warn, error）
+log_level = info
+log_max_days=3
+#身份验证令牌(token)
+token = pAnRjG9mznLQ
+#当许多人一起使用一个frps服务器时，使用http、https类型的子域配置是很方便的。自定义二级域名
+#subdomain_host = my.abc.com
+# 只允许frpc使用指定的端口，如果您不设置任何设置，则不会有任何限制。
+#allow_ports = 1-65535
+#如果超过最大值，则每个代理中的pool_count将更改为max_pool_count
+max_pool_count=50
+#如果使用tcp流复用，则默认值为true
+tcp_mux = true
+EOF
 
 	rm -rf ./frp*
 }
@@ -104,12 +136,12 @@ echo -e "用户名：admin  密码：admin"
 echo -e "默认 bind_port：7000"
 echo -e "默认 token：12345678"
 echo ""
-echo -e "默认 vhost_http_port：80"
-echo -e "默认 vhost_https_port：443"
+echo -e "默认 vhost_http_port：81"
+echo -e "默认 vhost_https_port：8443"
 echo ""
 echo -e "默认 bind_udp_port：7001"
 echo -e "默认 kcp_bind_port：7000"
-echo -e "默认 allow_ports：2000-3000,3001,3003,4000-50000"
+echo -e "默认 allow_ports = 1-65535"
 echo ""
 echo -e "Windows 便捷脚本：https://github.com/songwqs/frpspro/raw/master/FrpsPro.zip"
 echo -e "Windows 最新内核：${windows_url}"
