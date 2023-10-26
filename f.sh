@@ -11,33 +11,33 @@
 
 # 获取frps最新版本号
 get_version(){
-	api_url="https://api.github.com/repos/fatedier/frp/releases/latest"
+api_url="https://api.github.com/repos/fatedier/frp/releases/latest"
+ghproxy="https://ghproxy.com/"	
+new_ver=`curl ${PROXY} -s ${api_url} --connect-timeout 10| grep 'tag_name' | cut -d\" -f4`
 
-	new_ver=`curl ${PROXY} -s ${api_url} --connect-timeout 10| grep 'tag_name' | cut -d\" -f4`
-
-	touch ./version.txt
-	cat <<EOF > ./version.txt
-	${new_ver}
-	EOF
+touch ./version.txt
+cat <<EOF > ./version.txt
+${new_ver}
+EOF
 	
-	sed -i 's/v//g' ./version.txt
-	get_releases=$(cat ./version.txt)
+sed -i 's/v//g' ./version.txt
+get_releases=$(cat ./version.txt)
 
-	if [ ! -n "$get_releases" ]; then
-	new_ver="v0.48.0"
-	get_releases="0.48.0"
-	fi
+if [ ! -z "$get_releases" ]; then
+new_ver="v0.48.0"
+get_releases="0.48.0"
+fi
 	
-	ghproxy="https://ghproxy.com/"
-	releases_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_linux_amd64.tar.gz
-	windows_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_windows_amd64.zip
-	rm -rf ./version.txt
+releases_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_linux_amd64.tar.gz
+windows_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_windows_amd64.zip
+rm -rf ./version.txt
+ 
+	
 }
-
 
 # 安装frps
 install_frps(){
-	wget --no-check-certificate -qO- ${releases_url}
+	wget -N --no-check-certificate ${releases_url}
 
 	tar -zxvf frp*.tar.gz
 
@@ -49,7 +49,6 @@ install_frps(){
 
 	rm -rf ./frp*
 }
-
 
 # 添加开机自启动
 add_auto_run(){
@@ -340,9 +339,6 @@ case "$1" in
 	set_$1
 	;;
 	*)
-	echo -e "缺少参数,更多教程请访问：https://github.com/dylanbai8/kmspro"
+	echo -e "缺少参数,更多教程请访问：https://github.com/fatedier/frp/blob/master/README_zh.md"
 	;;
 esac
-
-
-# 转载请保留版权：https://github.com/dylanbai8/frpspro
