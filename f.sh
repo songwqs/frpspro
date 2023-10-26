@@ -8,11 +8,9 @@
 #	Blog: https://songw.top/
 #====================================================
 
-
 # 获取frps最新版本号
 get_version(){
-api_url="https://api.github.com/repos/fatedier/frp/releases/latest"
-ghproxy="https://ghproxy.com/"	
+api_url="https://api.github.com/repos/fatedier/frp/releases/latest"	
 new_ver=`curl ${PROXY} -s ${api_url} --connect-timeout 10| grep 'tag_name' | cut -d\" -f4`
 
 touch ./version.txt
@@ -22,17 +20,22 @@ EOF
 	
 sed -i 's/v//g' ./version.txt
 get_releases=$(cat ./version.txt)
-
-if [ ! -z "$get_releases" ]; then
-new_ver="v0.48.0"
-get_releases="0.48.0"
+echo -e "最新版本是:$get_releases"
+if [ ! -n "$get_releases" ]; then
+    echo "拉取默认版本"
+    new_ver="v0.50.0"
+    get_releases="0.50.0"
 fi
-	
+check_url="https://ghproxy.com/"
+if curl --output /dev/null --silent --head --fail "$check_url"; then
+    ghproxy="https://ghproxy.com/"
+else
+    ghproxy="https://git.songw.top/"
+fi	
 releases_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_linux_amd64.tar.gz
 windows_url=${ghproxy}https://github.com/fatedier/frp/releases/download/${new_ver}/frp_${get_releases}_windows_amd64.zip
 rm -rf ./version.txt
- 
-	
+
 }
 
 # 安装frps
@@ -298,8 +301,6 @@ set_subdomain_host(){
 }
 
 # ====================================
-
-
 # 关闭apache2 释放80端口
 set_unapache2(){
 	systemctl disable httpd >/dev/null 2>&1
@@ -321,7 +322,6 @@ set_unapache2(){
 	echo -e "关闭 apache2 成功！"
 	echo -e "关闭 防火墙 成功！"
 }
-
 
 # 安装流程
 set_install(){
