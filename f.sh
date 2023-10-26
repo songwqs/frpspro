@@ -37,7 +37,7 @@ get_version(){
 
 # 安装frps
 install_frps(){
-	wget -N --no-check-certificate ${releases_url}
+	wget --no-check-certificate -qO- ${releases_url}
 
 	tar -zxvf frp*.tar.gz
 
