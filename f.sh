@@ -82,7 +82,7 @@ max_pool_count=50
 tcp_mux = true
 EOF
 
-	rm -rf ./frp*
+rm -rf ./frp*
 }
 
 # 添加开机自启动
