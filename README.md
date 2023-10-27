@@ -73,19 +73,14 @@ bash f.sh subdomain_host
 bash f.sh uninstall
 ```
 ## 一键更新 frps
+```
 bash f.sh update
 ```
-
-# 【注意事项】
-
----
-
----
-
 ## 一键关闭 apache2、防火墙，释放 80 端口
 ```
 bash f.sh unapache2
 ```
+# 【注意事项】
 
 ## 注意，除http(s)以外，客户端 frpc.ini 内任何端口修改时须在以下范围内：
 ```
