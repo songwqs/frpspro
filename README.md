@@ -1,7 +1,12 @@
 # frps 一键安装脚本
 ## 支持系统 Centos 7+ Debian 8+
+github：
 ```
 wget -N --no-check-certificate https://ghproxy.com/https://raw.githubusercontent.com/songwqs/frpspro/master/f.sh && chmod +x f.sh && bash f.sh install
+```
+gitee：
+```
+wget -N --no-check-certificate https://gitee.com/songwqs/frpspro/raw/master/f.sh && chmod +x f.sh && bash f.sh install
 ```
 
 ## 一键修改 token
