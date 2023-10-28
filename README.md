@@ -2,7 +2,7 @@
 ## 支持系统 Centos 7+ Debian 8+
 github：
 ```
-wget -N --no-check-certificate https://ghproxy.com/https://raw.githubusercontent.com/songwqs/frpspro/master/f.sh && chmod +x f.sh && bash f.sh install
+wget -N --no-check-certificate https://raw.githubusercontent.com/songwqs/frpspro/master/f.sh && chmod +x f.sh && bash f.sh install
 ```
 gitee：
 ```
