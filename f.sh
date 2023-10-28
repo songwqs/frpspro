@@ -64,7 +64,7 @@ kcp_bind_port=7000
 #如果要通过仪表板配置或重新加载frp，则必须设置dashboard_port
 dashboard_port=7500
 #身份验证令牌(token)
-token = =${def_dashboard_token}
+token =${def_dashboard_token}
 #仪表板资产目录（仅适用于调试模式）
 dashboard_user=admin
 dashboard_pwd=${def_dashboard_pwd}
