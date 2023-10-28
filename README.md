@@ -1,4 +1,4 @@
-# frps 一键安装脚本
+# frps 一键安装脚本  [源frp项目](https://github.com/fatedier/frp) 
 ## 支持系统 Centos 7+ Debian 8+
 github：
 ```
@@ -13,7 +13,6 @@ wget -N --no-check-certificate https://gitee.com/songwqs/frpspro/raw/master/f.sh
 ```
 bash f.sh token
 ```
-
 
 # 【常用命令】
 
