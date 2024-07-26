@@ -5,6 +5,7 @@
 #	* Frps 一键安装脚本，Frpc Windows 便捷脚本！Frp 远程桌面！
 #	* 开源地址：https://github.com/songwqs/frpspro
 #	Blog: https://songw.top/
+#    由于0.52.0以后换了配置文件所以此脚本止步于0.51.3
 #====================================================
 file_path="/usr/local/frps"
 api_url="https://api.github.com/repos/fatedier/frp/releases/latest"
@@ -13,7 +14,7 @@ check_url1="https://ghproxy.com/"
 check_url2="https://git.songwqs.top/"
 version=${file_path}/version.txt
 def_version="v0.50.0"
-get_releases=""
+get_releases="0.51.3"
 new_ver=""
 # 获取frps最新版本号
 get_version(){
@@ -24,7 +25,9 @@ ${new_ver}
 EOF
 	
 sed -i 's/v//g' ./version.txt
-get_releases=$(cat ./version.txt)
+##get_releases=$(cat ./version.txt)
+##由于0.52.0以后换了配置说以此脚本止步于0.51.3
+get_releases="0.51.3"
 echo -e "最新版本是:$get_releases"
 if [ ! -n "$get_releases" ]; then
     echo "拉取默认版本"
