@@ -2,16 +2,16 @@
 ## 支持系统 Centos 7+ Debian 8+
 github：
 ```
-wget -N --no-check-certificate https://raw.githubusercontent.com/songwqs/frpspro/master/f.sh && chmod +x f.sh && bash f.sh install
+wget -N --no-check-certificate https://raw.githubusercontent.com/songwqs/frpspro/master/ff.sh && chmod +x ff.sh && bash ff.sh install
 ```
 gitee：
 ```
-wget -N --no-check-certificate https://gitee.com/songwqs/frpspro/raw/master/f.sh && chmod +x f.sh && bash f.sh install
+wget -N --no-check-certificate https://gitee.com/songwqs/frpspro/raw/master/ff.sh && chmod +x ff.sh && bash ff.sh install
 ```
 
 ## 一键修改 token
 ```
-bash f.sh token
+bash ff.sh token
 ```
 
 # 【常用命令】
@@ -20,19 +20,19 @@ bash f.sh token
 
 ---
 
-## 一键修改 bind_port
+## 一键修改 bindPort
 ```
-bash f.sh bind_port
-```
-
-## 一键修改 vhost_http_port
-```
-bash f.sh vhost_http_port
+bash ff.sh bindPort
 ```
 
-## 一键修改 vhost_https_port
+## 一键修改 vhostHTTPPort
 ```
-bash f.sh vhost_https_port
+bash ff.sh vhostHTTPPort
+```
+
+## 一键修改 vhostHTTPSPort
+```
+bash ff.sh vhostHTTPSPort
 ```
 
 
@@ -42,47 +42,42 @@ bash f.sh vhost_https_port
 
 ---
 
-## 一键修改 dashboard_port
+## 一键修改 webServer.port
 ```
-bash f.sh dashboard_port
+bash ff.sh webServer.port
 ```
 
 ## 一键修改 dashboard_user
 ```
-bash f.sh dashboard_user
+bash ff.sh dashboard_user
 ```
 
-## 一键修改 dashboard_pwd
+## 一键修改 webServer.password
 ```
-bash f.sh dashboard_pwd
-```
-
-## 一键修改 bind_udp_port
-```
-bash f.sh bind_udp_port
+bash ff.sh webServer.password
 ```
 
-## 一键修改 kcp_bind_port
+## 一键修改 kcpBindPort
 ```
-bash f.sh kcp_bind_port
+bash ff.sh kcpBindPort
 ```
 
-## 一键修改 subdomain_host （用于泛解析子域名）
+## 一键修改 subDomainHost （用于泛解析子域名）
 ```
-bash f.sh subdomain_host
+bash ff.sh subDomainHost
 ```
 
 ## 一键卸载 frps
 ```
-bash f.sh uninstall
+bash ff.sh uninstall
 ```
 ## 一键更新 frps
 ```
-bash f.sh update
+bash ff.sh update
 ```
 ## 一键关闭 apache2、防火墙，释放 80 端口
 ```
-bash f.sh unapache2
+bash ff.sh unapache2
 ```
 # 【注意事项】
 
