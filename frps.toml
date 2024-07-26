@@ -1,0 +1,43 @@
+##frps.toml
+bindPort = 7000
+auth.token = "YxshaKpLVPWdxjht"
+kcpBindPort = 7000
+##Web界面
+##默认为 127.0.0.1 如果需要公网访问修改为 0.0.0.0
+webServer.addr = "0.0.0.0"
+webServer.port = 7500
+webServer.user = "admin"
+webServer.password = "admin"
+##配置TLS 证书来启用HTTPS接口
+# webServer.tls.certFile = "server.crt"
+# webServer.tls.keyFile = "server.key"
+# transport.tls.force 指定是否只接受 TLS 加密连接。默认情况下，该值为 false。
+#tls.force = false
+# transport.tls.certFile = "server.crt"
+# transport.tls.keyFile = "server.key"
+# transport.tls.trustedCaFile = "ca.crt"
+# 仪表板资源目录（仅限调试模式）
+# webServer.assetsDir = "./static"
+##如果要支持虚拟主机，必须设置用于监听的 http 端口（可选）
+##注意：http 端口和 https 端口可以与 bind_port 相同
+vhostHTTPPort = 81
+vhostHTTPSPort = 444
+# 控制台或实际 logFile 路径，如 ./frps.log
+log.to = "./frps.log"
+# trace、debug、info、warn、error
+log.level = "info"
+log.maxDays = 3
+# 当 log.to 为 console 时禁用日志颜色，默认值为 false
+log.disablePrintColor = false
+# 每个代理中保留的池计数不超过 maxPoolCount。
+transport.maxPoolCount = 50
+# 如果使用了 tcp 流复用，则默认值为 true
+transport.tcpMux = true
+# 指定 tcp mux 的保持活动间隔,仅当 tcpMux 为 true 时有效
+transport.tcpMuxKeepaliveInterval = 60
+#每个客户端可用的最大端口数，默认值为 0 表示无限制
+##maxPortsPerClient = 0
+##在仪表板监听器中启用 golang pprof 处理程序,必须首先设置仪表板端口
+##webServer.pprofEnable = false
+##enablePrometheus 将在 webServer 上的 /metrics API 导出 Prometheus 指标。
+##enablePrometheus = true

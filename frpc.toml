@@ -1,0 +1,12 @@
+##frpc.toml
+user = "admin"
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "YxshaKpLVPWdxjht"
+
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 6000
